@@ -7,6 +7,21 @@ password = "secret"
 ws = obsws(host, port, password)
 ws.connect()
 
-ws.call(requests.StartStream())
+def streamStatus():
+    response = ws.call(requests.GetStreamStatus())
+    output_active = response.getOutputActive()
+    print(output_active)
+    return output_active
+#response = 'void'
+#response = ws.call(requests.GetStreamStatus())
+#print(response)
 
+# = 'void'
+#status = response['outputActive']
+#print(status)
+
+ws.call(requests.StartStream())
+streamStatus()
+
+ws.disconnect()
 
